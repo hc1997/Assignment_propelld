@@ -24,6 +24,7 @@ export default class UploadKyc extends React.Component {
         }
         this.setState({
             yes: true,
+            no:false,
             array: [...this.state.array, object],
         });
 
@@ -37,6 +38,7 @@ export default class UploadKyc extends React.Component {
     res_get = (e) => {
         this.setState({
             no: true,
+            yes:false,
         });
     }
 
@@ -71,9 +73,8 @@ export default class UploadKyc extends React.Component {
                         <h3>Is Applicant's Aadhar linked to Mobile Number ?</h3>
                     </div>
                     <div>
-                        <input type="radio" name="yes" value={this.state.yes} onClick={this.get_result} /> YES<br></br>
-                        <input type="radio" name="no" value={this.state.no} onClick={this.res_get} /> NO<br></br>
-                    </div>
+                    {this.state.yes==false ? <input type="radio" name="yes" value={this.state.yes} onClick={this.get_result}  /> :<input type="radio" name="yes" value={this.state.yes} onClick={this.get_result} checked />} YES<br></br>
+                    {this.state.no==false ? <input type="radio" name="no" value={this.state.no} onClick={this.res_get}  /> :<input type="radio" name="no" value={this.state.no} onClick={this.res_get} checked />} NO<br></br>                    </div>
 
                     {this.state.yes ? (
                         <div className="container-fluid">
@@ -88,6 +89,7 @@ export default class UploadKyc extends React.Component {
                     ) : null}
 
                     {this.state.no ? (
+                    
                         <div className="container-fluid">
                             <div className="row " >
                                 <Link to="/uploaddoc" class="btn btn-primary rounded-pill mt-5" onClick={this.res_get}>PROCEED TO KYC</Link>
